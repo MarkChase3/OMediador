@@ -23,10 +23,11 @@ jobs:
 
     steps:
       - name: Setup repo
-        run: npm install telegraf
+        run: npm install telegraf; ls /home;
+          
+
   build:
     runs-on: ubuntu-latest
-
 
     steps:
       - name: Run server
