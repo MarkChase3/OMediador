@@ -3,6 +3,6 @@
     "telegraf": "npm:telegraf"
   }
    "tasks": {
-      "build": "deno run main.js"
+      "build": "deno run --allow-env main.js"
     },
 }
