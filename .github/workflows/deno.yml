@@ -30,4 +30,4 @@ jobs:
 
     steps:
       - name: Run server
-        run: node main.js $START_QUESTION
+        run: node ../main.js $START_QUESTION
