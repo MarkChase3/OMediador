@@ -1,4 +1,4 @@
-const { Telegraf, Markup, Telegram } = require('telegraf')
+import { Telegraf, Markup, Telegram } from 'telegraf'
 const bot = new Telegraf(process.env.BOT_KEY)
 
 let chatsP = [[92, 0], [256, 1], [258, 2]]
