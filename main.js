@@ -1,5 +1,4 @@
 const { Telegraf, Markup, Telegram } = require('telegraf')
-const { createContext } = require('vm')
 const bot = new Telegraf(process.env.BOT_KEY)
 
 let chatsP = [[92, 0], [256, 1], [258, 2]]
@@ -44,7 +43,7 @@ bot.on('message', (ctx) => {
 })
 bot.action('NAOP', (ctx) => {
     let txt = ctx.update.callback_query.message.caption ? ctx.update.callback_query.message.caption : ctx.update.callback_query.message.text
-    if (ctx.from.first_name == txt.split('\n')[0].split(' ').slice(3).join(' ').slice(0, -12)) {
+    if (ctx.from.first_name == txt.split('\n')[0].split(' ').slice(3).join(' ')) {
         let txt = ctx.update.callback_query.message.caption ? ctx.update.callback_query.message.caption : ctx.update.callback_query.message.text
         ctx.update.message = ctx.update.callback_query.message
         ctx.deleteMessage()
