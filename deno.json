@@ -2,4 +2,7 @@
   "imports": {
     "telegraf": "npm:telegraf"
   }
+   "tasks": {
+      "build": "deno run main.js"
+    },
 }
