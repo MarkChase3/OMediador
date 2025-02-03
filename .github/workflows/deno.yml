@@ -1,34 +1,34 @@
-# This workflow uses actions that are not certified by GitHub.
-# They are provided by a third-party and are governed by
-# separate terms of service, privacy policy, and support
-# documentation.
-
-# This workflow will install Deno then run `deno lint` and `deno test`.
-# For more information see: https://github.com/denoland/setup-deno
-
-name: Deno
-
+name: Deploy
 on:
   push:
-    branches: ["main"]
+    branches: main
   pull_request:
-    branches: ["main"]
-
-permissions:
-  contents: read
+    branches: main
 
 jobs:
-  setup:
+  deploy:
+    name: Deploy
     runs-on: ubuntu-latest
 
-    steps:
-      - name: Setup repo
-        run: npm install telegraf; ls /home;
-          
-
-  build:
-    runs-on: ubuntu-latest
+    permissions:
+      id-token: write # Needed for auth with Deno Deploy
+      contents: read # Needed to clone the repository
 
     steps:
-      - name: Run server
-        run: node ../main.js $START_QUESTION
+      - name: Clone repository
+        uses: actions/checkout@v4
+
+      - name: Install Deno
+        uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.x
+
+      - name: Build step
+        run: "deno task build"
+
+      - name: Upload to Deno Deploy
+        uses: denoland/deployctl@v1
+        with:
+          project: ""
+          entrypoint: "main.js"
+          root: "."
